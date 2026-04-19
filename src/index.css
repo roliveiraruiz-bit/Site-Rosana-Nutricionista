@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  
+  --color-primary-400: #a3e635; /* Lime green */
+  --color-primary-500: #84cc16;
+  --color-accent-400: #fb923c; /* Orange */
+  --color-accent-500: #f97316;
+  --color-copper-400: #d97706; /* Copper-like */
+  --color-copper-500: #b45309;
+
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 15px 0px rgba(132, 204, 22, 0.4); }
+    50% { box-shadow: 0 0 30px 5px rgba(132, 204, 22, 0.8); }
+  }
+}
+
+body {
+  @apply bg-black text-zinc-100 font-sans antialiased overflow-x-hidden;
+}
+
+.glass {
+  @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)];
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-400 via-accent-400 to-copper-400;
+}
+
+.glow-border {
+  @apply relative;
+}
+
+.glow-border::before {
+  content: "";
+  @apply absolute -inset-0.5 bg-gradient-to-r from-primary-400 via-accent-500 to-copper-500 rounded-2xl blur opacity-30 transition-opacity duration-500;
+  z-index: -1;
+}
+
+.glow-border:hover::before {
+  @apply opacity-100;
+}
